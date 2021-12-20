@@ -3,6 +3,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+  line-height: 1.75;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -12,9 +13,6 @@ code {
     monospace;
 }
 
-.phrase {
-  padding: 5px;
-}
 
 .learning {
   background-color:coral;
@@ -27,3 +25,24 @@ code {
 .learned {
   background-color: lightgray;
 }
+
+.word {
+  border: 1px solid rgba(0, 0, 0, 0);
+  padding: 1px;
+  border-radius: 3px;
+}
+
+.word:hover {
+  border-color: blue;
+}
+
+.phrase {
+  border: 1px solid rgba(0, 0, 0, 0);
+  padding: 4px;
+  border-radius: 3px;
+}
+
+.phrase:hover {
+  border-color: red;
+}
+
