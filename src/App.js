@@ -30,15 +30,19 @@ const Word = function ({ word, status }) {
   return <span className={status + ' word'}>{word}</span>
 };
 
+
 const Phrase = function ({ phrase, status }) {
+  const parts = phrase.split(' ');
+
   return (
     <span className={status + ' phrase'}>
       {
-        phrase.split(' ').map((word, index, array) => <><Word key={word + index} word={word} status={markedWords[word.toLowerCase()]} />{index === array.length - 1 ? '' : ' '}</>)
+        parts.map((word, index, array) => <><Word key={word + index} word={word} status={markedWords[word.toLowerCase()]} />{index === array.length - 1 ? '' : ' '}</>)
       }
     </span>
   )
 };
+
 
 const Paragraph = function({ paragraph }) {
   const tokens = paragraph.match(tokenRegExp);
@@ -56,6 +60,7 @@ const Paragraph = function({ paragraph }) {
   );  
 }
 
+
 const TextBody = function ({ text }) {
   const paragraphs = text.split('\n');
 
@@ -67,6 +72,7 @@ const TextBody = function ({ text }) {
     </div>
   );
 };
+
 
 const App = function () {
   return (
