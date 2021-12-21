@@ -7,8 +7,8 @@ import {
 } from 'recoil';
 
 
-const markedWordsState = atom({
-  key: 'markedWordsState',
+const userwordsState = atom({
+  key: 'userwordsState',
   default: {
     terriblý: 'learning',
     'was falling': 'familiar',
@@ -25,12 +25,12 @@ const markedWordsState = atom({
 
 
 const Word = function ({ word, status }) {
-  const [markedWords, setMarkedWords] = useRecoilState(markedWordsState);
+  const [userwords, setuserwords] = useRecoilState(userwordsState);
 
   const setToLearning = function (event) {
-    let markedWordsCopy = Object.assign({}, markedWords);
-    markedWordsCopy[event.target.textContent.toLowerCase()] = 'learning';
-    setMarkedWords(markedWordsCopy);
+    let userwordsCopy = Object.assign({}, userwords);
+    userwordsCopy[event.target.textContent.toLowerCase()] = 'learning';
+    setuserwords(userwordsCopy);
   }
 
   return <span className={status + ' word'} onClick={setToLearning}>{word}</span>
@@ -39,12 +39,12 @@ const Word = function ({ word, status }) {
 
 const Phrase = function ({ phrase, status }) {
   const parts = phrase.split(' ');
-  const markedWords = useRecoilValue(markedWordsState);
+  const userwords = useRecoilValue(userwordsState);
 
   return (
     <span className={status + ' phrase'}>
       {
-        parts.map((word, index, array) => <><Word key={word + index} word={word} status={markedWords[word.toLowerCase()]} />{index === array.length - 1 ? '' : ' '}</>)
+        parts.map((word, index, array) => <><Word key={word + index} word={word} status={userwords[word.toLowerCase()]} />{index === array.length - 1 ? '' : ' '}</>)
       }
     </span>
   )
@@ -52,9 +52,9 @@ const Phrase = function ({ phrase, status }) {
 
 
 const Paragraph = function({ paragraph }) {
-  const markedWords = useRecoilValue(markedWordsState);
+  const userwords = useRecoilValue(userwordsState);
 
-  const phrases = Object.keys(markedWords).filter(key => key.split(' ').length > 1);
+  const phrases = Object.keys(userwords).filter(key => key.split(' ').length > 1);
   const phraseFinder = phrases.length === 0 ? '' : `(${phrases.join('|')})|`;
   const wordFinder = `(?<words>[\\p{Letter}\\p{Mark}'-]+)`;
   const noWordFinder = `(?<nowords>[^\\p{Letter}\\p{Mark}'-]+)`;
@@ -69,8 +69,8 @@ const Paragraph = function({ paragraph }) {
     <p>
       {
         tokens.map((token, index) => {
-          if (phrases.includes(token)) return <Phrase key={token + index} phrase={token} status={markedWords[token.toLowerCase()]} />;
-          if (token.match(wordRegExp)) return <Word key={token + index} word={token} status={markedWords[token.toLowerCase()]} />;
+          if (phrases.includes(token)) return <Phrase key={token + index} phrase={token} status={userwords[token.toLowerCase()]} />;
+          if (token.match(wordRegExp)) return <Word key={token + index} word={token} status={userwords[token.toLowerCase()]} />;
           return <span key={token + index}>{token}</span>;
         })
       }
