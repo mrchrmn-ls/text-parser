@@ -1,11 +1,10 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Georgia', serif;
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(247, 230, 176);
 }
 
 code {
@@ -23,7 +22,7 @@ code {
 }
 
 .learned {
-  background-color: lightgray;
+  background-color: rgb(235, 209, 126);
 }
 
 .word {
